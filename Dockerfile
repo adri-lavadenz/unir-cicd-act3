@@ -7,4 +7,5 @@ WORKDIR /opt/calc
 COPY .coveragerc .pylintrc pyproject.toml pytest.ini requires ./
 COPY app ./app
 COPY test ./test
+COPY web ./web
 RUN pip install -r requires

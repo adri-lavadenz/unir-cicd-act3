@@ -25,7 +25,7 @@ test-api:
 
 test-e2e:
 	docker rm -v apiserver || true
-    docker rm -v calc-web || true
+	docker rm -v calc-web || true
 	docker network create calc-test-e2e || true
 	docker run -d --rm --volume `pwd`:/opt/calc --network calc-test-e2e --env PYTHONPATH=/opt/calc --name apiserver --env FLASK_APP=app/api.py -p 5000:5000 -w /opt/calc calculator-app:latest flask run --host=0.0.0.0
 	docker run -d --rm --volume `pwd`/web:/usr/share/nginx/html --volume `pwd`/web/constants.test.js:/usr/share/nginx/html/constants.js --volume `pwd`/web/nginx.conf:/etc/nginx/conf.d/default.conf --network calc-test-e2e --name calc-web -p 81:80 nginx
